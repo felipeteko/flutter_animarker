@@ -17,8 +17,7 @@ class AnimarkerRobot {
     bool useRotation,
   ) async {
     final completer = Completer<GoogleMapController>();
-    var animarker = getNewAnimarker(
-        key, completer, <Marker>{newMarker}, cameraPosition, useRotation);
+    var animarker = getNewAnimarker(key, completer, <Marker>{newMarker}, cameraPosition, useRotation);
 
     debugPrint('Pumping ${++counter}');
 

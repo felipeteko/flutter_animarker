@@ -15,12 +15,10 @@ const CameraPosition _kSantoDomingo = CameraPosition(
 
 class FlutterMapMarkerAnimationRealTimeExample extends StatefulWidget {
   @override
-  _FlutterMapMarkerAnimationExampleState createState() =>
-      _FlutterMapMarkerAnimationExampleState();
+  _FlutterMapMarkerAnimationExampleState createState() => _FlutterMapMarkerAnimationExampleState();
 }
 
-class _FlutterMapMarkerAnimationExampleState
-    extends State<FlutterMapMarkerAnimationRealTimeExample> {
+class _FlutterMapMarkerAnimationExampleState extends State<FlutterMapMarkerAnimationRealTimeExample> {
   LatLng startPosition = LatLng(18.488213, -69.959186);
   LatLng startPosition2 = LatLng(18.488213, -69.959186);
 
@@ -59,8 +57,7 @@ class _FlutterMapMarkerAnimationExampleState
       distanceFilter: 20,
     );
 
-    positionStream = Geolocator.getPositionStream(locationSettings: settings)
-        .listen((Position p) async {
+    positionStream = Geolocator.getPositionStream(locationSettings: settings).listen((Position p) async {
       setState(() {
         var markerId = MarkerId('MarkerId3');
         _markers[markerId] = RippleMarker(
@@ -72,15 +69,13 @@ class _FlutterMapMarkerAnimationExampleState
         );
       });
 
-      await Future.delayed(
-          Duration(milliseconds: min(1000, random.nextInt(5000))), () {
+      await Future.delayed(Duration(milliseconds: min(1000, random.nextInt(5000))), () {
         setState(() {
           startPosition = LatLng(p.latitude + 0.001, p.longitude + 0.001);
         });
       });
 
-      await Future.delayed(
-          Duration(milliseconds: min(1000, random.nextInt(1000) + 100)), () {
+      await Future.delayed(Duration(milliseconds: min(1000, random.nextInt(1000) + 100)), () {
         setState(() {
           startPosition2 = LatLng(p.latitude - 0.01, p.longitude - 0.002);
         });
@@ -113,7 +108,7 @@ class _FlutterMapMarkerAnimationExampleState
                     markers: <Marker>{
                       //Avoid sent duplicate MarkerId
                       ..._markers.values.toSet(),
-                     /*  RippleMarker(
+                      /*  RippleMarker(
                         icon: BitmapDescriptor.defaultMarker,
                         markerId: MarkerId('MarkerId1'),
                         position: startPosition,
@@ -127,8 +122,7 @@ class _FlutterMapMarkerAnimationExampleState
                     child: GoogleMap(
                       mapType: MapType.normal,
                       initialCameraPosition: _kSantoDomingo,
-                      onMapCreated: (controller) =>
-                          _controller.complete(controller),
+                      onMapCreated: (controller) => _controller.complete(controller),
                       onCameraMove: (ca) => setState(() => zoom = ca.zoom),
                     ),
                   ),
@@ -138,8 +132,7 @@ class _FlutterMapMarkerAnimationExampleState
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
-                          style:
-                              (ripple ? Colors.red : Colors.blue).buttonStyle,
+                          style: (ripple ? Colors.red : Colors.blue).buttonStyle,
                           onPressed: () => setState(() => ripple = !ripple),
                           child: Text(
                             ripple ? 'Stop Ripple' : 'Start Ripple',
@@ -147,28 +140,23 @@ class _FlutterMapMarkerAnimationExampleState
                           ),
                         ),
                         ElevatedButton(
-                          style: (useRotation ? Colors.red : Colors.blue)
-                              .buttonStyle,
-                          onPressed: () =>
-                              setState(() => useRotation = !useRotation),
+                          style: (useRotation ? Colors.red : Colors.blue).buttonStyle,
+                          onPressed: () => setState(() => useRotation = !useRotation),
                           child: Text(
                             useRotation ? 'Stop Rotation' : 'Start Rotation',
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
                         ElevatedButton(
-                          style: (isActiveTrip ? Colors.red : Colors.blue)
-                              .buttonStyle,
-                          onPressed: () =>
-                              setState(() => isActiveTrip = !isActiveTrip),
+                          style: (isActiveTrip ? Colors.red : Colors.blue).buttonStyle,
+                          onPressed: () => setState(() => isActiveTrip = !isActiveTrip),
                           child: Text(
                             isActiveTrip ? 'Stop trip' : 'Start trip',
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
                         ElevatedButton(
-                          style: (isActiveTrip ? Colors.red : Colors.blue)
-                              .buttonStyle,
+                          style: (isActiveTrip ? Colors.red : Colors.blue).buttonStyle,
                           onPressed: () => setState(() {
                             print('LENGTH -> ${_markers.length}');
                             positionStream.pause();
